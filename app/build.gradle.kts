@@ -16,6 +16,7 @@ android {
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         getByName(BuildType.RELEASE) {
@@ -32,7 +33,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        dataBinding = true
     }
 
     compileOptions {
@@ -93,6 +94,10 @@ dependencies {
     // ViewModel and LiveData
     implementation(LibraryDependency.LIFECYCLE_LIVEDATA_KTX)
     implementation(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
+    kapt(LibraryDependency.LIFECYCLE_EXTENSIONS)
+    implementation("androidx.recyclerview:recyclerview:1.2.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+//    kapt ("com.android.databinding:compiler:3.1.4")
 
     // glide for images
     implementation(LibraryDependency.GLIDE)
