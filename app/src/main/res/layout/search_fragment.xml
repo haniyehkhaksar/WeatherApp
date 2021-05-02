@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="io.github.haniyehkhaksar.weatherapp.ui.search.SearchViewModel" />
-
-        <variable
             name="sharedViewModel"
             type="io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel" />
     </data>
@@ -21,7 +17,8 @@
         android:padding="7dp"
         tools:context=".ui.search.SearchFragment">
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_search_box"
@@ -29,6 +26,8 @@
             android:drawablePadding="5dp"
             android:hint="@string/search"
             android:padding="5dp"
+            android:text="@={sharedViewModel.city}"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

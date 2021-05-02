@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="io.github.haniyehkhaksar.weatherapp.ui.search.SearchViewModel" />
+            type="io.github.haniyehkhaksar.weatherapp.ui.news.NewsViewModel" />
 
         <variable
             name="sharedViewModel"
@@ -17,19 +17,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_700"
         android:padding="7dp"
-        tools:context=".ui.search.SearchFragment">
+        tools:context=".ui.news.NewsFragment">
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/newsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_box"
-            android:drawableStart="@drawable/ic_baseline_search_24"
-            android:drawablePadding="5dp"
-            android:hint="@string/search"
-            android:padding="5dp"
+            android:text="@string/news_highlights"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            hasFixedSize="true"
+            android:layout_margin="5dp"
+            app:adapter="@{viewModel.newsAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/newsTitle"
+            tools:listitem="@layout/item_news" />
+
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/loading"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            android:visibility="@{viewModel.isLoading}"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

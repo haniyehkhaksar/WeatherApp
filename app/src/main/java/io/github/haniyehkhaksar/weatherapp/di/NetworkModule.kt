@@ -5,6 +5,9 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import io.github.haniyehkhaksar.weatherapp.data.network.NewsApi
+import io.github.haniyehkhaksar.weatherapp.data.network.WeatherApi
+import io.github.haniyehkhaksar.weatherapp.utils.LoggingInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,13 +17,14 @@ import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class NetworkModule(private val appContext: Context) {
 
     @Provides
-    @Reusable
-    internal fun provideOkHttpClient(): OkHttpClient {
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
 
@@ -34,25 +38,26 @@ class NetworkModule(private val appContext: Context) {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(LoggingInterceptor())
             .addInterceptor(interceptor)
             .build()
     }
 
     @Provides
-    @Reusable
+    @Singleton
     @Named("WeatherRetrofit")
-    internal fun provideWeatherRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
+    fun provideWeatherRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .baseUrl("https://openweathermap.org/")
+            .baseUrl("https://api.openweathermap.org/")
             .client(okHttpClient)
             .build()
 
     @Provides
     @Reusable
     @Named("NewsRetrofit")
-    internal fun provideNewsRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
+    fun provideNewsRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -60,19 +65,14 @@ class NetworkModule(private val appContext: Context) {
             .client(okHttpClient)
             .build()
 
-//    @Provides
-//    @Reusable
-//    internal fun provideMovieApi(retrofit: Retrofit): MovieApi = retrofit.create(MovieApi::class.java)
-//
-//    @Provides
-//    @Reusable
-//    internal fun provideRemoteSource(api: MovieApi): MovieListSource = MovieListSource(api)
-//
-//    @Provides
-//    @Reusable
-//    internal fun provideNewsApi(retrofit: Retrofit): NewsApi = retrofit.create(NewsApi::class.java)
-//
-//    @Provides
-//    @Reusable
-//    internal fun provideNewsSource(api: NewsApi): NewsSource = NewsSource(api)
+    @Provides
+    @Singleton
+    fun provideWeatherApi(@Named("WeatherRetrofit") retrofit: Retrofit): WeatherApi =
+        retrofit.create(WeatherApi::class.java)
+
+    @Provides
+    @Reusable
+    fun provideNewsApi(@Named("NewsRetrofit") retrofit: Retrofit): NewsApi =
+        retrofit.create(NewsApi::class.java)
+
 }

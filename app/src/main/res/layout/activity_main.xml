@@ -5,36 +5,62 @@
 
     <data>
 
-        <!--        <variable-->
-        <!--            name="gameViewModel"-->
-        <!--            type="io.github.haniyehkhaksar.weatherapp.ui.search.SearchViewModel" />-->
+        <variable
+            name="viewModel"
+            type="io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.MainActivity">
+        android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/search"
-            android:name="io.github.haniyehkhaksar.weatherapp.ui.search.SearchFragment"
-            android:layout_width="match_parent"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/weather"
-        android:name="io.github.haniyehkhaksar.weatherapp.ui.weather.WeatherFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/search" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_700"
+                android:minHeight="?attr/actionBarSize"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/news"
-            android:name="io.github.haniyehkhaksar.weatherapp.ui.news.NewsFragment"
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/weather" />
+            android:layout_height="0dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.main.MainActivity">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/weather"
+                    android:name="io.github.haniyehkhaksar.weatherapp.ui.weather.WeatherFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/news"
+                    android:name="io.github.haniyehkhaksar.weatherapp.ui.news.NewsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/weather" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

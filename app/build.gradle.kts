@@ -16,7 +16,8 @@ android {
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
-        vectorDrawables.useSupportLibrary = true
+//        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
     buildTypes {
         getByName(BuildType.RELEASE) {
@@ -39,6 +40,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
     }
 
     kotlinOptions {
@@ -97,6 +102,7 @@ dependencies {
     kapt(LibraryDependency.LIFECYCLE_EXTENSIONS)
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.multidex:multidex:2.0.1")
 //    kapt ("com.android.databinding:compiler:3.1.4")
 
     // glide for images
@@ -111,8 +117,15 @@ dependencies {
     kapt(LibraryDependency.DAGGER_PROCESSOR)
 
     // Test
-    testImplementation(TestLibraryDependency.JUNIT)
-
+    testImplementation("io.mockk:mockk:1.10.5")
+    androidTestImplementation("io.mockk:mockk-android:1.10.5")
+    testImplementation("org.assertj:assertj-core:3.18.1")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
 
 }
 

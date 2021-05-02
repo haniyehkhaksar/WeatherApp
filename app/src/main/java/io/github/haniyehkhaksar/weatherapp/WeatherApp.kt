@@ -4,6 +4,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.github.haniyehkhaksar.weatherapp.di.AppComponent
 import io.github.haniyehkhaksar.weatherapp.di.DaggerAppComponent
+import io.github.haniyehkhaksar.weatherapp.di.NetworkModule
 import javax.inject.Inject
 
 class WeatherApp : DaggerApplication() {
@@ -14,6 +15,7 @@ class WeatherApp : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         appComponent = DaggerAppComponent
             .builder()
+            .networkModule(NetworkModule(this))
             .build()
         appComponent.inject(this)
         return appComponent
