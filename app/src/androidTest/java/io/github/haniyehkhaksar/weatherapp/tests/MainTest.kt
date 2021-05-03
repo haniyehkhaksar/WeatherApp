@@ -96,7 +96,6 @@ class MainTest {
 
     @Test
     fun showCurrentWeatherAfterSearchCity() {
-        //TODO chnage api response for valid data
         //click
         onView(withId(R.id.search)).perform(click())
         // Type the text in the search field and submit the query
@@ -116,7 +115,6 @@ class MainTest {
 
     @Test
     fun showFutureWeatherAfterSearchCity() {
-        //TODO chnage api response for valid data
         //click
         onView(withId(R.id.search)).perform(click())
         // Type the text in the search field and submit the query

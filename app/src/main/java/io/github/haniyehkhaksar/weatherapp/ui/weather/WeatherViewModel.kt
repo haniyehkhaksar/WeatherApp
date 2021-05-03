@@ -31,6 +31,7 @@ class WeatherViewModel @Inject constructor(
     val weatherAdapter = WeatherAdapter(future.value!!.toMutableList())
 
     fun getCurrentWeather(place: String) {
+        //TODO show loading on screen
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             currentWeatherUseCase.execute(place).also { result ->
@@ -41,7 +42,7 @@ class WeatherViewModel @Inject constructor(
 
                     is CurrentWeatherUseCase.Result.Error -> {
                         current.postValue(WeatherDomainModel(place, 0.0, 0.0, 0.0, ""))
-                        //TODO show error message on screen
+                        //TODO show error message on screen and make other views gone
                     }
                 }
                 withContext(Dispatchers.Main) {
@@ -52,6 +53,7 @@ class WeatherViewModel @Inject constructor(
     }
 
     fun getFutureWeather(place: String) {
+        //TODO show loading on screen
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             futureWeatherUseCase.execute(place, 3).also { result ->
@@ -62,7 +64,7 @@ class WeatherViewModel @Inject constructor(
 
                     is FutureWeatherUseCase.Result.Error -> {
                         future.postValue(listOf())
-                        //TODO show error message on screen
+                        //TODO show error message on screen and make other views gone
                     }
                 }
                 withContext(Dispatchers.Main) {

@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 class FutureWeatherUseCase @Inject constructor(private val weatherRepository: WeatherRepository) {
 
+    //TODO we can add more options like INTERNET_ERROR, SERVER_ERROR, GENERAL_ERROR to handle different errors in a way we like.
     sealed class Result {
         data class Success(val data: List<WeatherDomainModel>) : Result()
         data class Error(val e: Throwable) : Result()

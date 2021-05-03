@@ -99,6 +99,7 @@ dependencies {
     implementation(LibraryDependency.LIFECYCLE_LIVEDATA_KTX)
     implementation(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
     kapt(LibraryDependency.LIFECYCLE_EXTENSIONS)
+    //TODO add to library dependency
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.multidex:multidex:2.0.1")
@@ -115,6 +116,7 @@ dependencies {
     implementation(LibraryDependency.DAGGER_ANDROID)
     implementation(LibraryDependency.DAGGER_ANDROID_X)
 
+    //TODO add to test library dependency
     // Test
     testImplementation("io.mockk:mockk:1.10.5")
     testImplementation("org.assertj:assertj-core:3.18.1")
@@ -133,18 +135,14 @@ dependencies {
     androidTestImplementation("androidx.fragment:fragment-testing:1.3.3")
     androidTestImplementation("androidx.fragment:fragment-ktx:1.3.3")
     androidTestImplementation("androidx.test:core:1.3.0")
-    //    androidTestImplementation("io.mockk:mockk-android:1.10.5")
     implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("androidx.test:runner:1.3.0")
-
     kaptAndroidTest(LibraryDependency.DAGGER_COMPILER)
     kaptAndroidTest(LibraryDependency.DAGGER_PROCESSOR)
 
-    //shared preference
-    implementation("androidx.preference:preference-ktx:1.1.1")
 
 }
 

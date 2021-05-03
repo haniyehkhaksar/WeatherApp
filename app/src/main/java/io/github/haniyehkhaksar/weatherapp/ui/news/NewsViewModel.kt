@@ -21,6 +21,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
     val newsAdapter = NewsAdapter(news.value!!.toMutableList())
 
     fun getNews(place: String) {
+        //TODO show loading on screen
         EspressoIdlingResource.increment()
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
@@ -31,7 +32,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
                     }
 
                     is NewsUseCase.Result.Error -> {
-                        //TODO show error message on screen
+                        //TODO show error message on screen and make other views gone
                         news.postValue(listOf())
                     }
                 }
