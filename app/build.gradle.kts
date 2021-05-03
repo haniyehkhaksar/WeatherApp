@@ -116,7 +116,6 @@ dependencies {
 
     // Test
     testImplementation("io.mockk:mockk:1.10.5")
-    androidTestImplementation("io.mockk:mockk-android:1.10.5")
     testImplementation("org.assertj:assertj-core:3.18.1")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
@@ -133,11 +132,15 @@ dependencies {
     androidTestImplementation("androidx.fragment:fragment-testing:1.3.3")
     androidTestImplementation("androidx.fragment:fragment-ktx:1.3.3")
     androidTestImplementation("androidx.test:core:1.3.0")
+    //    androidTestImplementation("io.mockk:mockk-android:1.10.5")
     implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("androidx.test:runner:1.3.0")
+
+    //shared preference
+    implementation("androidx.preference:preference-ktx:1.1.1")
 
 }
 

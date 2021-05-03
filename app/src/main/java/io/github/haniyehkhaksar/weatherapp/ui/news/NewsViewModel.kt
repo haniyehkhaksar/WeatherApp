@@ -1,6 +1,5 @@
 package io.github.haniyehkhaksar.weatherapp.ui.news
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,7 +31,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
                     }
 
                     is NewsUseCase.Result.Error -> {
-                        Log.e("Haniiiii-news", "error:${result.e.message}")
+                        //TODO show error message on screen
                         news.postValue(listOf())
                     }
                 }
@@ -43,11 +42,6 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
                 }
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.e("Haniiii", "weather-onCleared")
     }
 
 }

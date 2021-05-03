@@ -1,6 +1,5 @@
 package io.github.haniyehkhaksar.weatherapp.ui.weather
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -42,7 +41,7 @@ class WeatherViewModel @Inject constructor(
 
                     is CurrentWeatherUseCase.Result.Error -> {
                         current.postValue(WeatherDomainModel(place, 0.0, 0.0, 0.0, ""))
-                        Log.e("Haniiiii-w-1", "error:${result.e.message}")
+                        //TODO show error message on screen
                     }
                 }
                 withContext(Dispatchers.Main) {
@@ -63,7 +62,7 @@ class WeatherViewModel @Inject constructor(
 
                     is FutureWeatherUseCase.Result.Error -> {
                         future.postValue(listOf())
-                        Log.e("Haniiiii-w2", "error:${result.e.message}")
+                        //TODO show error message on screen
                     }
                 }
                 withContext(Dispatchers.Main) {
@@ -73,11 +72,5 @@ class WeatherViewModel @Inject constructor(
             }
         }
     }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.e("Haniiii", "weather-onCleared")
-    }
-
 
 }

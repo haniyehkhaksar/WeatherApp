@@ -1,7 +1,6 @@
 package io.github.haniyehkhaksar.weatherapp.ui.weather
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +22,10 @@ class WeatherFragment : DaggerFragment() {
 
     lateinit var dataBinding: WeatherFragmentBinding
 
+    // When we have a rotation, our activity call onCreate and then observers as well.
+    // because my observers call api, you may think my viewmodel and livedata doesn't work.
+    // but it works properly, becuase it catch city name form livedata even after rotation.
     private val cityObserver = Observer<String> { city ->
-        Log.e("Haniiii", "weather-observe")
         if (city.isNullOrEmpty() || city.isNullOrBlank()) {
             dataBinding.root.visibility = View.GONE
         } else {

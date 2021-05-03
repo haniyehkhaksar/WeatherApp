@@ -41,7 +41,7 @@ class LoggingInterceptor : Interceptor {
     }
 
     private fun logApiInfo(message: String) {
-        Log.e("Haniiiiiiii", message)
+        Log.e("Hani-api", message)
     }
 
     private fun createResponseMessage(response: Response): String {
