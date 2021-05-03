@@ -18,52 +18,47 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
         tools:context=".ui.weather.WeatherFragment">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/todayTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:text="@string/today_title"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/half_activity_padding"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/material_text_subhead"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/cityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:text="@{viewModel.current.city}"
-            android:textSize="20sp"
+            android:layout_marginTop="@dimen/half_activity_padding"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/weatherIcon"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/material_text_headline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/weatherIcon"
+            app:layout_constraintTop_toBottomOf="@id/todayTitle"
             tools:text="Calgary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/weatherIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/weather_icon_size"
+            android:layout_height="@dimen/weather_icon_size"
             app:imageUrl="@{viewModel.current.icon}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/todayTitle"
             tools:src="@mipmap/ic_launcher" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/today_title"
-            android:textSize="14sp"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/temp_max_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/material_text_subhead"
             android:text="@{String.format(@string/max_min_temp, viewModel.current.maxTemp, viewModel.current.minTemp)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weatherIcon"
@@ -73,7 +68,10 @@
             android:id="@+id/current_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="@dimen/double_activity_padding"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/material_text_subhead"
             android:text="@{String.format(@string/current_temp, viewModel.current.currentTemp)}"
             app:layout_constraintStart_toEndOf="@id/temp_max_min"
             app:layout_constraintTop_toBottomOf="@id/weatherIcon"
@@ -82,8 +80,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
             app:cardBackgroundColor="@color/white"
+            android:layout_marginTop="@dimen/activity_padding"
             app:cardCornerRadius="5dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="3dp"
@@ -93,23 +91,24 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/half_activity_padding">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/futureTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="7dp"
                     android:text="@string/next_three_days"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/material_text_subhead"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/futureWeather"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     app:adapter="@{viewModel.weatherAdapter}"
+                    android:layout_marginTop="@dimen/half_activity_padding"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/futureTitle"
                     app:spanCount="3"

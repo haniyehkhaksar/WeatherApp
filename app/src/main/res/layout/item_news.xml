@@ -27,13 +27,12 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/newsImage"
-                android:layout_width="120dp"
+                android:layout_width="@dimen/news_image_width"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:background="@color/purple_200"
+                android:background="@color/image_background"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{info.image}"
-                tools:src="@drawable/ic_baseline_search_24" />
+                app:imageUrl="@{info.image}" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="0dp"
@@ -46,22 +45,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:padding="7dp"
+                    android:padding="@dimen/half_activity_padding"
                     android:text="@{info.title}"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    tools:text="Article Title" />
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/material_text_subhead"
+                    tools:text="@string/today_title" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvSource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="1"
-                    android:padding="7dp"
+                    android:padding="@dimen/half_activity_padding"
                     android:text="@{String.format(@string/by_source, info.source)}"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp"
-                    tools:text="Article Source" />
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/material_text_body1"
+                    tools:text="@string/by_source_sample" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>

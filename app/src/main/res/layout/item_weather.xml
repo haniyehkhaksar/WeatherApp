@@ -13,12 +13,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:padding="@dimen/half_activity_padding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/weatherIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/weather_icon_size"
+            android:layout_height="@dimen/weather_icon_size"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:imageUrl="@{info.icon}"
@@ -32,8 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="@dimen/half_activity_padding"
             android:text="@{String.format(@string/max_min_temp_number, info.maxTemp, info.minTemp)}"
-            android:textColor="@color/gray"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/material_text_subhead"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weatherIcon"

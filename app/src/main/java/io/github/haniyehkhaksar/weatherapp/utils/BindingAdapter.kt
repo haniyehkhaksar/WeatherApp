@@ -1,6 +1,8 @@
 package io.github.haniyehkhaksar.weatherapp.utils
 
+import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +22,22 @@ object BindingAdapter {
                 .load(imgUri)
                 .apply(
                     RequestOptions()
-                        .placeholder(R.drawable.ic_baseline_search_24)
-                        .error(R.drawable.ic_baseline_search_24)
+                        .placeholder(
+                            ColorDrawable(
+                                ContextCompat.getColor(
+                                    imgView.context,
+                                    R.color.image_background
+                                )
+                            )
+                        )
+                        .error(
+                            ColorDrawable(
+                                ContextCompat.getColor(
+                                    imgView.context,
+                                    R.color.image_background
+                                )
+                            )
+                        )
                 )
                 .into(imgView)
         }

@@ -24,6 +24,8 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         databinding.viewModel = sharedViewModel
+        databinding.executePendingBindings()
+
         setSupportActionBar(databinding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
@@ -47,7 +49,7 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
 
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    setCityValue(query)
+                    sharedViewModel.city.value = query
                     return true
                 }
             })
@@ -56,7 +58,4 @@ class MainActivity : DaggerAppCompatActivity() {
         return true
     }
 
-    fun setCityValue(query: String) {
-        sharedViewModel.city.value = query
-    }
 }

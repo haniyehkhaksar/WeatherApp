@@ -10,4 +10,9 @@
     <string name="current_temp">Current %.0f</string>
     <string name="news_highlights">News Highlights</string>
     <string name="by_source">By %s</string>
+    <string name="article_title_sample">Article Title</string>
+    <string name="by_source_sample">By Article Source</string>
+
+    <string name="error_getting_news">Error getting news</string>
+    <string name="error_getting_weather">Error getting weather</string>
 </resources>

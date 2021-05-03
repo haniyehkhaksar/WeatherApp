@@ -1,6 +1,7 @@
 package io.github.haniyehkhaksar.weatherapp.ui.weather
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,26 +21,34 @@ class WeatherFragment : DaggerFragment() {
     @Inject
     lateinit var sharedViewModel: SharedViewModel
 
+    lateinit var dataBinding: WeatherFragmentBinding
+
     private val cityObserver = Observer<String> { city ->
-        viewModel.getCurrentWeather(city)
-        viewModel.getFutureWeather(city)
+        Log.e("Haniiii", "weather-observe")
+        if (city.isNullOrEmpty() || city.isNullOrBlank()) {
+            dataBinding.root.visibility = View.GONE
+        } else {
+            dataBinding.root.visibility = View.VISIBLE
+            viewModel.getCurrentWeather(city)
+            viewModel.getFutureWeather(city)
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: WeatherFragmentBinding =
+        dataBinding =
             DataBindingUtil.inflate(inflater, R.layout.weather_fragment, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        binding.sharedViewModel = sharedViewModel
-        binding.executePendingBindings()
+        dataBinding.lifecycleOwner = viewLifecycleOwner
+        dataBinding.viewModel = viewModel
+        dataBinding.sharedViewModel = sharedViewModel
+        dataBinding.executePendingBindings()
 
         sharedViewModel.city.observe(viewLifecycleOwner, cityObserver)
 
 
-        return binding.root
+        return dataBinding.root
     }
 
     override fun onDestroyView() {

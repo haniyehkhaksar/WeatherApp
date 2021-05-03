@@ -20,22 +20,36 @@ class NewsFragment : DaggerFragment() {
     @Inject
     lateinit var sharedViewModel: SharedViewModel
 
-    private val cityObserver = Observer<String> { city -> viewModel.getNews(city) }
+    lateinit var dataBinding: NewsFragmentBinding
+
+    private val cityObserver = Observer<String> { city ->
+        if (city.isNullOrEmpty() || city.isNullOrBlank()) {
+            dataBinding.root.visibility = View.GONE
+        } else {
+            dataBinding.root.visibility = View.VISIBLE
+            viewModel.getNews(city)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: NewsFragmentBinding =
+        dataBinding =
             DataBindingUtil.inflate(inflater, R.layout.news_fragment, container, false)
-        binding.executePendingBindings()
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        binding.sharedViewModel = sharedViewModel
+        dataBinding.executePendingBindings()
+        dataBinding.lifecycleOwner = viewLifecycleOwner
+        dataBinding.viewModel = viewModel
+        dataBinding.sharedViewModel = sharedViewModel
 
         sharedViewModel.city.observe(viewLifecycleOwner, cityObserver)
 
-        return binding.root
+        return dataBinding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        sharedViewModel.city.removeObserver(cityObserver)
     }
 
 }

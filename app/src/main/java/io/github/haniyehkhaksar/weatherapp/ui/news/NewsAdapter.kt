@@ -1,5 +1,7 @@
 package io.github.haniyehkhaksar.weatherapp.ui.news
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +13,7 @@ class NewsAdapter(private var items: MutableList<NewsDomainModel>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemNewsBinding.inflate(inflater)
+        val binding = ItemNewsBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -28,6 +30,12 @@ class NewsAdapter(private var items: MutableList<NewsDomainModel>) :
     inner class ViewHolder(private val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NewsDomainModel) {
+            binding.root.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.link))
+                browserIntent.resolveActivity(binding.root.context.packageManager)?.let {
+                    binding.root.context.startActivity(browserIntent)
+                }
+            }
             binding.info = item
             binding.executePendingBindings()
         }

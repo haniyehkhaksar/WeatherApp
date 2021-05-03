@@ -1,5 +1,6 @@
 package io.github.haniyehkhaksar.weatherapp.data.datamodel.weather
 
+import io.github.haniyehkhaksar.weatherapp.data.datamodel.TempUtils
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.WeatherDomainModel
 
 data class CurrentWeatherDataModel(
@@ -22,9 +23,9 @@ fun CurrentWeatherDataModel.toDomainModel(): WeatherDomainModel {
 
     return WeatherDomainModel(
         this.name,
-        this.main.temp,
-        this.main.temp_max,
-        this.main.temp_min,
+        TempUtils.KelvinToCelsius(this.main.temp),
+        TempUtils.KelvinToCelsius(this.main.temp_max),
+        TempUtils.KelvinToCelsius(this.main.temp_min),
         "http://openweathermap.org/img/w/${this.weather[0].icon}.png"
     )
 }

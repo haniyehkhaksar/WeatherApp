@@ -45,7 +45,6 @@ class MainTest {
         //click
         onView(withId(R.id.search)).perform(click())
         // Type the text in the search field and submit the query
-        // Type the text in the search field and submit the query
         onView(isAssignableFrom(EditText::class.java)).perform(
             typeText("calgary"),
             pressImeActionButton()
@@ -120,7 +119,6 @@ class MainTest {
         //TODO chnage api response for valid data
         //click
         onView(withId(R.id.search)).perform(click())
-        // Type the text in the search field and submit the query
         // Type the text in the search field and submit the query
         onView(isAssignableFrom(EditText::class.java)).perform(
             typeText("calgary"),

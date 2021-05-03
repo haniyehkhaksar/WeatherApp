@@ -1,6 +1,5 @@
 plugins {
     id(GradlePluginId.ANDROID_APPLICATION)
-//    id("name.remal.check-dependency-updates")
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
@@ -15,9 +14,8 @@ android {
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
-//        testInstrumentationRunner = "AndroidConfig.TEST_INSTRUMENTATION_RUNNER"
         testInstrumentationRunner = "io.github.haniyehkhaksar.weatherapp.utils.TestRunner"
-//        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
     buildTypes {
@@ -104,9 +102,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.multidex:multidex:2.0.1")
-//    kapt ("com.android.databinding:compiler:3.1.4")
 
-    // glide for images
+    // Glide for images
     implementation(LibraryDependency.GLIDE)
     kapt(LibraryDependency.GLIDE_COMPILER)
 
