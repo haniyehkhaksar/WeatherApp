@@ -8,8 +8,8 @@ import io.github.haniyehkhaksar.weatherapp.utils.InstantExecutorExtension
 import io.mockk.coEvery
 import io.mockk.mockk
 import io.mockk.unmockkAll
-import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -41,7 +41,8 @@ class WeatherViewModelTest {
         )
         coEvery { currentWeatherUseCase.execute("Calgary") } returns result
         weatherViewModel.getCurrentWeather("Calgary")
-        verify { weatherViewModel.current.postValue(result.data) }
+        Thread.sleep(1000)
+        assertThat(weatherViewModel.current.value).isEqualTo(result.data)
     }
 
     @ExperimentalCoroutinesApi
@@ -50,17 +51,8 @@ class WeatherViewModelTest {
         val result = CurrentWeatherUseCase.Result.Error(Throwable("Exception"))
         coEvery { currentWeatherUseCase.execute("Calgary") } returns result
         weatherViewModel.getCurrentWeather("Calgary")
-        verify {
-            weatherViewModel.current.postValue(
-                WeatherDomainModel(
-                    "Calgary",
-                    0.0,
-                    0.0,
-                    0.0,
-                    ""
-                )
-            )
-        }
+        Thread.sleep(1000)
+        assertThat(weatherViewModel.current.value!!.currentTemp).isEqualTo(0.0)
     }
 
     @ExperimentalCoroutinesApi
@@ -75,8 +67,8 @@ class WeatherViewModelTest {
         )
         coEvery { futureWeatherUseCase.execute("Calgary", 3) } returns result
         weatherViewModel.getFutureWeather("Calgary")
-        verify { weatherViewModel.future.postValue(result.data) }
-        verify { weatherViewModel.weatherAdapter.updateData(weatherViewModel.future.value!!.toMutableList()) }
+        Thread.sleep(1000)
+        assertThat(weatherViewModel.future.value!!.size).isEqualTo(3)
     }
 
     @ExperimentalCoroutinesApi
@@ -85,7 +77,7 @@ class WeatherViewModelTest {
         val result = FutureWeatherUseCase.Result.Error(Throwable("Exception"))
         coEvery { futureWeatherUseCase.execute("Calgary", 3) } returns result
         weatherViewModel.getFutureWeather("Calgary")
-        verify { weatherViewModel.future.postValue(listOf()) }
-        verify { weatherViewModel.weatherAdapter.updateData(weatherViewModel.future.value!!.toMutableList()) }
+        Thread.sleep(1000)
+        assertThat(weatherViewModel.future.value!!.size).isEqualTo(0)
     }
 }

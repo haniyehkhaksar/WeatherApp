@@ -53,6 +53,7 @@ class NewsViewModelTest {
         )
         coEvery { newsUseCase.execute("Calgary", 20, 1) } returns result
         newsViewModel.getNews("Calgary")
+        Thread.sleep(1000)
         assertThat(newsViewModel.news.value!!.size).isEqualTo(4)
 
     }
@@ -63,6 +64,7 @@ class NewsViewModelTest {
         val result = NewsUseCase.Result.Error(IOException("message"))
         coEvery { newsUseCase.execute("Calgary", 20, 1) } returns result
         newsViewModel.getNews("Calgary")
+        Thread.sleep(1000)
         assertThat(newsViewModel.news.value!!.size).isEqualTo(0)
     }
 }
