@@ -5,9 +5,9 @@
     <string name="weather">Weather</string>
     <string name="today_title">Today in</string>
     <string name="next_three_days">Next 3 days</string>
-    <string name="max_min_temp">max %.0f / min %.0f</string>
-    <string name="max_min_temp_number">%.0f / %.0f</string>
-    <string name="current_temp">Current %.0f</string>
+    <string name="max_min_temp">max %.0f\u2103 / min %.0f\u2103</string>
+    <string name="max_min_temp_number">%.0f\u2103 / %.0f\u2103</string>
+    <string name="current_temp">Current %.0f\u2103</string>
     <string name="news_highlights">News Highlights</string>
     <string name="by_source">By %s</string>
     <string name="article_title_sample">Article Title</string>

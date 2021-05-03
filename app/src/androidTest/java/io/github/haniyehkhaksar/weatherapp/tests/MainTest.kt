@@ -106,11 +106,11 @@ class MainTest {
             pressImeActionButton()
         )
 
-        onView(withId(R.id.cityName)).check(ViewAssertions.matches(withText("calgary")))
+        onView(withId(R.id.cityName)).check(ViewAssertions.matches(withText("Calgary")))
 
-        onView(withId(R.id.current_temp)).check(ViewAssertions.matches(withText("Current 12")))
+        onView(withId(R.id.current_temp)).check(ViewAssertions.matches(withText("Current 12\u2103")))
 
-        onView(withId(R.id.temp_max_min)).check(ViewAssertions.matches(withText("max 3 / min 2")))
+        onView(withId(R.id.temp_max_min)).check(ViewAssertions.matches(withText("max 30\u2103 / min 10\u2103")))
 
     }
 
@@ -130,21 +130,21 @@ class MainTest {
                 0,
                 R.id.tvTempRange
             )
-        ).check(ViewAssertions.matches(withText("2/1")))
-
-        onView(
-            RecyclerViewMatcher(R.id.futureWeather).atPositionOnView(
-                0,
-                R.id.tvTempRange
-            )
-        ).check(ViewAssertions.matches(ViewMatchers.withText("4/3")))
+        ).check(ViewAssertions.matches(withText("6\u2103 / 4\u2103")))
 
         onView(
             RecyclerViewMatcher(R.id.futureWeather).atPositionOnView(
                 1,
                 R.id.tvTempRange
             )
-        ).check(ViewAssertions.matches(ViewMatchers.withText("6/5")))
+        ).check(ViewAssertions.matches(ViewMatchers.withText("4\u2103 / 4\u2103")))
+
+        onView(
+            RecyclerViewMatcher(R.id.futureWeather).atPositionOnView(
+                2,
+                R.id.tvTempRange
+            )
+        ).check(ViewAssertions.matches(ViewMatchers.withText("3\u2103 / 3\u2103")))
 
 
     }

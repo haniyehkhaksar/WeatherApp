@@ -21,7 +21,7 @@ class WeatherInterceptor : Interceptor {
 
             url.contains("data/2.5/weather") -> {
                 val response: String =
-                    "{\"coord\":{\"lon\":-114.0853,\"lat\":51.0501},\"weather\":[{\"id\":803,\"main\":\"Clouds\",\"description\":\"broken clouds\",\"icon\":\"04d\"}],\"base\":\"stations\",\"main\":{\"temp\":277.47,\"feels_like\":275.66,\"temp_min\":275.93,\"temp_max\":278.71,\"pressure\":1019,\"humidity\":75},\"visibility\":10000,\"wind\":{\"speed\":2.06,\"deg\":270},\"clouds\":{\"all\":75},\"dt\":1620010148,\"sys\":{\"type\":1,\"id\":989,\"country\":\"CA\",\"sunrise\":1619957213,\"sunset\":1620010771},\"timezone\":-21600,\"id\":5913490,\"name\":\"Calgary\",\"cod\":200}"
+                    "{\"coord\":{\"lon\":-114.0853,\"lat\":51.0501},\"weather\":[{\"id\":803,\"main\":\"Clouds\",\"description\":\"broken clouds\",\"icon\":\"04d\"}],\"base\":\"stations\",\"main\":{\"temp\":285.15,\"feels_like\":285.15,\"temp_min\":283.15,\"temp_max\":303.15,\"pressure\":1019,\"humidity\":75},\"visibility\":10000,\"wind\":{\"speed\":2.06,\"deg\":270},\"clouds\":{\"all\":75},\"dt\":1620010148,\"sys\":{\"type\":1,\"id\":989,\"country\":\"CA\",\"sunrise\":1619957213,\"sunset\":1620010771},\"timezone\":-21600,\"id\":5913490,\"name\":\"Calgary\",\"cod\":200}"
                 responseBuilder.code(200)
                     .body(response.toResponseBody("application/json".toMediaTypeOrNull()))
                     .build()
