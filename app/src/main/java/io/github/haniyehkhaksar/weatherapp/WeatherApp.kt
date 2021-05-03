@@ -7,18 +7,22 @@ import io.github.haniyehkhaksar.weatherapp.di.DaggerAppComponent
 import io.github.haniyehkhaksar.weatherapp.di.NetworkModule
 import javax.inject.Inject
 
-class WeatherApp : DaggerApplication() {
+open class WeatherApp : DaggerApplication() {
 
     @Inject
     lateinit var appComponent: AppComponent
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        appComponent = DaggerAppComponent
+        appComponent = createAppComponent()
+        appComponent.inject(this)
+        return appComponent
+    }
+
+    open fun createAppComponent(): AppComponent {
+        return DaggerAppComponent
             .builder()
             .networkModule(NetworkModule(this))
             .build()
-        appComponent.inject(this)
-        return appComponent
     }
 
 }

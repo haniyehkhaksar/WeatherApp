@@ -15,7 +15,8 @@ android {
         targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
-        testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+//        testInstrumentationRunner = "AndroidConfig.TEST_INSTRUMENTATION_RUNNER"
+        testInstrumentationRunner = "io.github.haniyehkhaksar.weatherapp.utils.TestRunner"
 //        vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
@@ -126,6 +127,20 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+
+    //instrumented tests
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
+    androidTestImplementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    androidTestImplementation("org.assertj:assertj-core:3.18.1")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.3.3")
+    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.3")
+    androidTestImplementation("androidx.test:core:1.3.0")
+    implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
+    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
+    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("androidx.test:runner:1.3.0")
 
 }
 

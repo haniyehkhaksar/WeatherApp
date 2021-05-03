@@ -3,6 +3,7 @@ package io.github.haniyehkhaksar.weatherapp.ui.news
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zephyrsleep.tablet.utils.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.NewsDomainModel
 import io.github.haniyehkhaksar.weatherapp.domain.usecase.NewsUseCase
 import io.github.haniyehkhaksar.weatherapp.utils.NonNullLiveData
@@ -20,6 +21,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
     val newsAdapter = NewsAdapter(news.value!!.toMutableList())
 
     fun getNews(place: String) {
+        EspressoIdlingResource.increment()
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             newsUseCase.execute(place, 20, 1).also { result ->
@@ -35,6 +37,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
                 withContext(Dispatchers.Main) {
                     isLoading.value = false
                     newsAdapter.updateData(news.value!!.toMutableList())
+                    EspressoIdlingResource.decrement()
                 }
             }
         }

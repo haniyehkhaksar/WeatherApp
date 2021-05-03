@@ -5,10 +5,7 @@ import io.github.haniyehkhaksar.weatherapp.domain.usecase.NewsUseCase
 import io.github.haniyehkhaksar.weatherapp.ui.news.NewsViewModel
 import io.github.haniyehkhaksar.weatherapp.utils.CoroutineTestRule
 import io.github.haniyehkhaksar.weatherapp.utils.InstantExecutorExtension
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.mockk
-import io.mockk.unmockkAll
+import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
@@ -32,6 +29,7 @@ class NewsViewModelTest {
     @BeforeEach
     fun init() {
         MockKAnnotations.init(this)
+        mockkStatic("retrofit2.KotlinExtensions")
         newsViewModel = NewsViewModel(newsUseCase)
     }
 
@@ -51,10 +49,11 @@ class NewsViewModelTest {
                 NewsDomainModel("title4", "source4", "image4", "link4"),
             )
         )
-        coEvery { newsUseCase.execute("Calgary", 20, 1) } returns result
+        coEvery { newsUseCase.execute(any(), any(), any()) } returns result
         newsViewModel.getNews("Calgary")
         Thread.sleep(1000)
         assertThat(newsViewModel.news.value!!.size).isEqualTo(4)
+
 
     }
 

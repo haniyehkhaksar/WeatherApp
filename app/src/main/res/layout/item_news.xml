@@ -42,7 +42,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/title"
+                    android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -53,6 +53,7 @@
                     tools:text="Article Title" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvSource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="1"
