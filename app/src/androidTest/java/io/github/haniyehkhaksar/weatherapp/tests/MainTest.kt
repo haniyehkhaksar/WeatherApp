@@ -12,9 +12,9 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.zephyrsleep.tablet.utils.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.R
-import io.github.haniyehkhaksar.weatherapp.WeatherApp
 import io.github.haniyehkhaksar.weatherapp.ui.main.MainActivity
 import io.github.haniyehkhaksar.weatherapp.utils.RecyclerViewMatcher
+import io.github.haniyehkhaksar.weatherapp.utils.TestApp
 import io.github.haniyehkhaksar.weatherapp.utils.TestAppComponent
 import org.junit.After
 import org.junit.Before
@@ -24,10 +24,10 @@ import org.junit.Test
 
 @LargeTest
 class MainTest {
-    private val app: WeatherApp get() = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as WeatherApp
+    private val app: TestApp get() = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApp
 
     @get:Rule
-    val activityTestRule = ActivityTestRule(MainActivity::class.java, false, false)
+    val activityTestRule = ActivityTestRule(MainActivity::class.java, true, true)
 
     @Before
     fun beforeEach() {
@@ -62,7 +62,7 @@ class MainTest {
                 0,
                 R.id.tvSource
             )
-        ).check(ViewAssertions.matches(ViewMatchers.withText("Source1")))
+        ).check(ViewAssertions.matches(ViewMatchers.withText("By Source1")))
 
         onView(
             RecyclerViewMatcher(R.id.newsList).atPositionOnView(
@@ -76,7 +76,7 @@ class MainTest {
                 1,
                 R.id.tvSource
             )
-        ).check(ViewAssertions.matches(ViewMatchers.withText("Source2")))
+        ).check(ViewAssertions.matches(ViewMatchers.withText("By Source2")))
 
         onView(
             RecyclerViewMatcher(R.id.newsList).atPositionOnView(
@@ -90,7 +90,7 @@ class MainTest {
                 2,
                 R.id.tvSource
             )
-        ).check(ViewAssertions.matches(ViewMatchers.withText("Source4")))
+        ).check(ViewAssertions.matches(ViewMatchers.withText("By Source3")))
 
     }
 

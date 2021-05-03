@@ -2,7 +2,7 @@ private object LibraryVersion {
     const val APP_COMPACT = "1.3.0-rc01"
     const val CONSTRAINT_LAYOUT = "2.1.0-beta01"
     const val CORE_KTX = "1.6.0-alpha02"
-    const val DAGGER = "2.35.1"
+    const val DAGGER = "2.16"//2.35.1
     const val FRAGMENT_KTX = "1.3.3"
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.4.0-alpha01"

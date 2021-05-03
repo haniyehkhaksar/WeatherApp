@@ -108,11 +108,12 @@ dependencies {
     kapt(LibraryDependency.GLIDE_COMPILER)
 
     // Dagger 2
+    kapt(LibraryDependency.DAGGER_COMPILER)
+    kapt(LibraryDependency.DAGGER_PROCESSOR)
+
     implementation(LibraryDependency.DAGGER)
     implementation(LibraryDependency.DAGGER_ANDROID)
     implementation(LibraryDependency.DAGGER_ANDROID_X)
-    kapt(LibraryDependency.DAGGER_COMPILER)
-    kapt(LibraryDependency.DAGGER_PROCESSOR)
 
     // Test
     testImplementation("io.mockk:mockk:1.10.5")
@@ -138,6 +139,9 @@ dependencies {
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("androidx.test:runner:1.3.0")
+
+    kaptAndroidTest(LibraryDependency.DAGGER_COMPILER)
+    kaptAndroidTest(LibraryDependency.DAGGER_PROCESSOR)
 
     //shared preference
     implementation("androidx.preference:preference-ktx:1.1.1")
