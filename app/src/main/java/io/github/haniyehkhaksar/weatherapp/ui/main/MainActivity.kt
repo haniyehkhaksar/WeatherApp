@@ -50,6 +50,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
                 override fun onQueryTextSubmit(query: String): Boolean {
                     sharedViewModel.city.value = query
+                    clearFocus()
                     return true
                 }
             })
