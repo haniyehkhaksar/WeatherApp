@@ -10,7 +10,7 @@ private object TestLibraryVersion {
     const val OKHTTP = "5.0.0-alpha.2"
     const val FRAGMENT = "1.3.3"
     const val CORE = "1.3.0"
-    const val DAGGER = "2.16"//2.35.1
+    const val DAGGER = "2.35.1"
 }
 
 object TestLibraryDependency {

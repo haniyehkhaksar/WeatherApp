@@ -123,7 +123,6 @@ dependencies {
 
     //instrumented tests
     androidTestImplementation(TestLibraryDependency.ESPRESSO_CORE)
-    androidTestImplementation(TestLibraryDependency.ESPRESSO_CONTRIB)
     implementation(TestLibraryDependency.ESPRESSO_IDLING_RESOURCE)
     androidTestImplementation(TestLibraryDependency.OKHTTP)
     androidTestImplementation(TestLibraryDependency.ASSERTJ)
