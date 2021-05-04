@@ -15,6 +15,9 @@ private object LibraryVersion {
     const val GSON = "2.8.6"
     const val OKHTTP = "5.0.0-alpha.2"
     const val GLIDE = "4.12.0"
+    const val RECYCLER_VIEW = "1.2.0"
+    const val CARD_VIEW = "1.0.0"
+    const val MULTIDEX = "2.0.1"
 }
 
 object LibraryDependency {
@@ -66,4 +69,8 @@ object LibraryDependency {
 
     const val GLIDE = "com.github.bumptech.glide:glide:${LibraryVersion.GLIDE}"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${LibraryVersion.GLIDE}"
+
+    const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
+    const val CARD_VIEW = "androidx.cardview:cardview:${LibraryVersion.CARD_VIEW}"
+    const val MULTIDEX = "androidx.multidex:multidex:${LibraryVersion.MULTIDEX}"
 }

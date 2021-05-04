@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //TODO added dimens for different devices
     <dimen name="activity_padding">24dp</dimen>
     <dimen name="half_activity_padding">12dp</dimen>
     <dimen name="double_activity_padding">48dp</dimen>

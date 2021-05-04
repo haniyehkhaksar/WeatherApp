@@ -88,21 +88,16 @@ dependencies {
     implementation(LibraryDependency.OKHTTP)
     implementation(LibraryDependency.LOGGING_INTERCEPTOR)
 
-
-//    // Firebase
-//    implementation 'com.google.firebase:firebase-auth:19.3.1'
-//    implementation 'com.google.android.gms:play-services-auth:18.0.0'
-//    implementation 'com.google.firebase:firebase-firestore-ktx:21.4.3'
-
     // Arch components
     // ViewModel and LiveData
     implementation(LibraryDependency.LIFECYCLE_LIVEDATA_KTX)
     implementation(LibraryDependency.LIFECYCLE_VIEW_MODEL_KTX)
     kapt(LibraryDependency.LIFECYCLE_EXTENSIONS)
-    //TODO add to library dependency
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.multidex:multidex:2.0.1")
+    //View
+    implementation(LibraryDependency.RECYCLER_VIEW)
+    implementation(LibraryDependency.CARD_VIEW)
+    //Multidex
+    implementation(LibraryDependency.MULTIDEX)
 
     // Glide for images
     implementation(LibraryDependency.GLIDE)
@@ -116,32 +111,32 @@ dependencies {
     implementation(LibraryDependency.DAGGER_ANDROID)
     implementation(LibraryDependency.DAGGER_ANDROID_X)
 
-    //TODO add to test library dependency
     // Test
-    testImplementation("io.mockk:mockk:1.10.5")
-    testImplementation("org.assertj:assertj-core:3.18.1")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+    testImplementation(TestLibraryDependency.MOCKK)
+    testImplementation(TestLibraryDependency.ASSERTJ)
+    testImplementation(TestLibraryDependency.CORE_TESTING)
+    testImplementation(TestLibraryDependency.JUPITER_PARAMS)
+    testImplementation(TestLibraryDependency.JUPITER_API)
+    testRuntimeOnly(TestLibraryDependency.JUPITER_ENGINE)
+    testImplementation(TestLibraryDependency.COROUTINE_TEST)
+    testImplementation(TestLibraryDependency.COROUTINE_CORE)
 
     //instrumented tests
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
-    androidTestImplementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
-    androidTestImplementation("org.assertj:assertj-core:3.18.1")
-    androidTestImplementation("androidx.fragment:fragment-testing:1.3.3")
-    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.3")
-    androidTestImplementation("androidx.test:core:1.3.0")
-    implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3")
-    androidTestImplementation("androidx.test:rules:1.3.0")
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    kaptAndroidTest(LibraryDependency.DAGGER_COMPILER)
-    kaptAndroidTest(LibraryDependency.DAGGER_PROCESSOR)
+    androidTestImplementation(TestLibraryDependency.ESPRESSO_CORE)
+    androidTestImplementation(TestLibraryDependency.ESPRESSO_CONTRIB)
+    implementation(TestLibraryDependency.ESPRESSO_IDLING_RESOURCE)
+    androidTestImplementation(TestLibraryDependency.OKHTTP)
+    androidTestImplementation(TestLibraryDependency.ASSERTJ)
+    androidTestImplementation(TestLibraryDependency.FRAGMENT_TEST)
+    androidTestImplementation(TestLibraryDependency.FRAGMENT_KTX)
+    androidTestImplementation(TestLibraryDependency.CORE)
+
+    androidTestImplementation(TestLibraryDependency.CORE_TESTING)
+    androidTestImplementation(TestLibraryDependency.COROUTINE_TEST)
+    androidTestImplementation(TestLibraryDependency.TEST_RULES)
+    androidTestImplementation(TestLibraryDependency.RUNNER)
+    kaptAndroidTest(TestLibraryDependency.DAGGER_COMPILER)
+    kaptAndroidTest(TestLibraryDependency.DAGGER_PROCESSOR)
 
 
 }

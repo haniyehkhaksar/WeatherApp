@@ -13,4 +13,6 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
+    //TODO added style for textviews (size, color)
+
 </resources>
