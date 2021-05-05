@@ -1,8 +1,8 @@
 package io.github.haniyehkhaksar.weatherapp.utils
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.MediatorLiveData
 
-class NonNullLiveData<T : Any>(defaultValue: T) : MutableLiveData<T>() {
+class NonNullLiveData<T : Any>(defaultValue: T) : MediatorLiveData<T>() {
     init {
         value = defaultValue
     }

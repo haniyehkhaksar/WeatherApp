@@ -10,6 +10,8 @@
     <color name="dark_gray">#7e7e7e</color>
     <color name="medium_gray">#9e9e9e</color>
     <color name="light_gray">#dadada</color>
+    <color name="red">#FFF44336</color>
+    <color name="orange">#FFEF6C42</color>
 
     <color name="primary">@color/medium_blue</color>
     <color name="dark_primary">@color/dark_blue</color>
@@ -21,4 +23,6 @@
     <color name="secondary_text">@color/dark_gray</color>
     <color name="hint_text">@color/medium_gray</color>
     <color name="image_background">@color/medium_gray</color>
+    <color name="warning">@color/orange</color>
+    <color name="error">@color/red</color>
 </resources>

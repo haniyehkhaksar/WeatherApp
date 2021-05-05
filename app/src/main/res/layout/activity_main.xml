@@ -5,14 +5,21 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="sharedViewModel"
+            type="io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel" />
+
         <variable
             name="viewModel"
-            type="io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel" />
+            type="io.github.haniyehkhaksar.weatherapp.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -34,6 +41,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/background"
@@ -45,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/activity_padding"
                 android:paddingEnd="@dimen/activity_padding"
-                tools:context=".ui.main.MainActivity">
+                android:visibility="@{viewModel.showContentLayout ? View.VISIBLE : View.GONE}">
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/weather"
@@ -64,5 +72,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/search_your_city"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/material_text_headline"
+            android:visibility="@{viewModel.showContentLayout ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import dagger.android.support.DaggerAppCompatActivity
 import io.github.haniyehkhaksar.weatherapp.R
 import io.github.haniyehkhaksar.weatherapp.databinding.ActivityMainBinding
@@ -18,12 +19,25 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var sharedViewModel: SharedViewModel
 
+    @Inject
+    lateinit var viewModel: MainViewModel
+
     lateinit var databinding: ActivityMainBinding
+
+    private val cityObserver = Observer<String> { city ->
+        if (city.isNullOrEmpty() || city.isNullOrBlank()) {
+            viewModel.setContentVisibility(false)
+        } else {
+            viewModel.setContentVisibility(true)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        databinding.viewModel = sharedViewModel
+        databinding.sharedViewModel = sharedViewModel
+        databinding.viewModel = viewModel
+        databinding.lifecycleOwner = this
         databinding.executePendingBindings()
 
         setSupportActionBar(databinding.toolbar)
@@ -33,7 +47,15 @@ class MainActivity : DaggerAppCompatActivity() {
         supportActionBar?.setDisplayUseLogoEnabled(false)
         supportActionBar?.setDisplayShowCustomEnabled(false)
 
+        sharedViewModel.city.observe(this, cityObserver)
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sharedViewModel.city.removeObserver(cityObserver)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
@@ -45,6 +67,8 @@ class MainActivity : DaggerAppCompatActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
+                    if (newText.isNullOrEmpty() || newText.isNullOrBlank())
+                        sharedViewModel.city.value = ""
                     return true
                 }
 

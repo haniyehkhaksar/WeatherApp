@@ -15,4 +15,6 @@
 
     <string name="error_getting_news">Error getting news</string>
     <string name="error_getting_weather">Error getting weather</string>
+
+    <string name="search_your_city">Search Your City Name!</string>
 </resources>
