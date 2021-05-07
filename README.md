@@ -27,9 +27,15 @@
 ###### make it synchronization. use synchronized in constructor.
 
 ## what is data class in kotlin and what are its advantages?
-###### 
+###### in java we made model class with getter and setter, if we need we would implement toString(), equals(), hashCode(). but now we data class in ktolin we don't need to implement every thing unless we want it in specific way which need to our implementation.
+###### Don't forget we have to at least one param in promary contructor!, params in primary constructor have to be 'val' or 'var'! and they cannot be inner, open, abstract or sealed!
 
 ## what is sealed calss in kotlin?
+###### I use sealed class here as Enum calss. because somehow they are like enums. sealed classes are abstract by default, so you cannot make an instance of them.
+###### (read about sealed interface, they can be sealed too!)
+###### constructor in sealed class can be private or protected, never can be public, and never a third-party client can extend your sealed class! 
+###### subclasses of them must declared in the same package! (what about actual/expect?!)
+###### another benefit is when you put sealed calss as when expression, you never need to have else, it takes care of it!
 
 ## what is open and public calss in kotlin? open vs public!
 
