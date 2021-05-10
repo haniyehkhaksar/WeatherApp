@@ -1,6 +1,5 @@
 package io.github.haniyehkhaksar.weatherapp.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -32,13 +31,13 @@ class NetworkModule {
             .build()
     }
 
+
     @Provides
     @Reusable
     @Named("WeatherRetrofit")
     fun provideWeatherRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl("https://api.openweathermap.org/")
             .client(okHttpClient)
             .build()
@@ -49,7 +48,6 @@ class NetworkModule {
     fun provideNewsRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl("https://newsapi.org/")
             .client(okHttpClient)
             .build()

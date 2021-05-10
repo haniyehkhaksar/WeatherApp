@@ -79,7 +79,6 @@ dependencies {
     // Retrofit for networking
     implementation(LibraryDependency.RETROFIT2)
     implementation(LibraryDependency.RETROFIT2_CONVERTOR_GSON)
-    implementation(LibraryDependency.COROUTINE_ADAPTER)
 
     // Parsing the JSON format
     implementation(LibraryDependency.GSON)

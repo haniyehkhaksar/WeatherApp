@@ -1,6 +1,5 @@
 package io.github.haniyehkhaksar.weatherapp.ui.weather
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.WeatherDomainModel
@@ -17,18 +16,18 @@ class WeatherViewModel @Inject constructor(
     private val futureWeatherUseCase: FutureWeatherUseCase
 ) : ViewModel() {
 
-    val isLoading: MutableLiveData<Boolean> = NonNullLiveData(false)
+    val isLoading: NonNullLiveData<Boolean> = NonNullLiveData(false)
 
-    val current: MutableLiveData<WeatherDomainModel> = NonNullLiveData(
+    val current: NonNullLiveData<WeatherDomainModel> = NonNullLiveData(
         WeatherDomainModel(
             "",
             0.0, 0.0, 0.0, ""
         )
     )
 
-    val future: MutableLiveData<List<WeatherDomainModel>> = NonNullLiveData(listOf())
+    val future: NonNullLiveData<List<WeatherDomainModel>> = NonNullLiveData(listOf())
 
-    val weatherAdapter = WeatherAdapter(future.value!!.toMutableList())
+    val weatherAdapter = WeatherAdapter(future.value.toMutableList())
 
     fun getCurrentWeather(place: String) {
         //TODO show loading on screen
@@ -69,7 +68,7 @@ class WeatherViewModel @Inject constructor(
                 }
                 withContext(Dispatchers.Main) {
                     isLoading.value = false
-                    weatherAdapter.updateData(future.value!!.toMutableList())
+                    weatherAdapter.updateData(future.value.toMutableList())
                 }
             }
         }

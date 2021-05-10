@@ -1,6 +1,5 @@
 package io.github.haniyehkhaksar.weatherapp.ui.news
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zephyrsleep.tablet.utils.EspressoIdlingResource
@@ -14,11 +13,11 @@ import javax.inject.Inject
 
 class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : ViewModel() {
 
-    val isLoading: MutableLiveData<Boolean> = NonNullLiveData(false)
+    val isLoading: NonNullLiveData<Boolean> = NonNullLiveData(false)
 
-    val news: MutableLiveData<List<NewsDomainModel>> = NonNullLiveData(listOf())
+    val news: NonNullLiveData<List<NewsDomainModel>> = NonNullLiveData(listOf())
 
-    val newsAdapter = NewsAdapter(news.value!!.toMutableList())
+    val newsAdapter = NewsAdapter(news.value.toMutableList())
 
     fun getNews(place: String) {
         //TODO show loading on screen
@@ -38,7 +37,7 @@ class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : 
                 }
                 withContext(Dispatchers.Main) {
                     isLoading.value = false
-                    newsAdapter.updateData(news.value!!.toMutableList())
+                    newsAdapter.updateData(news.value.toMutableList())
                     EspressoIdlingResource.decrement()
                 }
             }

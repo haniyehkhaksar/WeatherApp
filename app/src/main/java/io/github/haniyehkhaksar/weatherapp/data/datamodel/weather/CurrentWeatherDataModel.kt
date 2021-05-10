@@ -23,9 +23,9 @@ fun CurrentWeatherDataModel.toDomainModel(): WeatherDomainModel {
 
     return WeatherDomainModel(
         this.name,
-        TempUtils.KelvinToCelsius(this.main.temp),
-        TempUtils.KelvinToCelsius(this.main.temp_max),
-        TempUtils.KelvinToCelsius(this.main.temp_min),
+        TempUtils.kelvinToCelsius(this.main.temp),
+        TempUtils.kelvinToCelsius(this.main.temp_max),
+        TempUtils.kelvinToCelsius(this.main.temp_min),
         "http://openweathermap.org/img/w/${this.weather[0].icon}.png"
     )
 }

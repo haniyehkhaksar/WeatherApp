@@ -21,9 +21,9 @@ fun Info.toDomainModel(city: String): WeatherDomainModel {
 
     return WeatherDomainModel(
         city = city,
-        currentTemp = TempUtils.KelvinToCelsius(this.main.temp),
-        maxTemp = TempUtils.KelvinToCelsius(this.main.temp_max),
-        minTemp = TempUtils.KelvinToCelsius(this.main.temp_min),
+        currentTemp = TempUtils.kelvinToCelsius(this.main.temp),
+        maxTemp = TempUtils.kelvinToCelsius(this.main.temp_max),
+        minTemp = TempUtils.kelvinToCelsius(this.main.temp_min),
         icon = "http://openweathermap.org/img/w/${this.weather[0].icon}.png"
     )
 }
