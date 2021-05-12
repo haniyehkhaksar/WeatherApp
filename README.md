@@ -52,7 +52,7 @@
 ###### if you want to use the default body and override the method together, you can use the 'super' keyword.
 ###### interfaces can have properties, it means they have an abstraction of getter(for val) or getter/setter(for var). there is no actual value for properties in the interface! the getter/setter can have the body in the interface.
 
-## what is the difference between abstract class and open class in Kotlin? ( abstract vs abstract)
+## what is the difference between abstract class and open class in Kotlin? (abstract vs open)
 ###### you cannot make an instance of an abstract class, but you can make an instance from an open class. you can extend from both.
 
 ## what is @Reusable annotation in dagger? @Reusable vs @Singleton!
