@@ -2,6 +2,7 @@ package io.github.haniyehkhaksar.weatherapp.ui.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.WeatherDomainModel
 import io.github.haniyehkhaksar.weatherapp.domain.usecase.CurrentWeatherUseCase
 import io.github.haniyehkhaksar.weatherapp.domain.usecase.FutureWeatherUseCase
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+@HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val currentWeatherUseCase: CurrentWeatherUseCase,
     private val futureWeatherUseCase: FutureWeatherUseCase

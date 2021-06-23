@@ -2,15 +2,17 @@ package io.github.haniyehkhaksar.weatherapp.ui.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zephyrsleep.tablet.utils.EspressoIdlingResource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.NewsDomainModel
 import io.github.haniyehkhaksar.weatherapp.domain.usecase.NewsUseCase
+import io.github.haniyehkhaksar.weatherapp.testutil.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.utils.NonNullLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+@HiltViewModel
 class NewsViewModel @Inject constructor(private val newsUseCase: NewsUseCase) : ViewModel() {
 
     val isLoading: NonNullLiveData<Boolean> = NonNullLiveData(false)

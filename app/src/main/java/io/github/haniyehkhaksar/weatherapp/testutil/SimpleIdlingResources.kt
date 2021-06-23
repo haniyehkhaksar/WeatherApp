@@ -1,4 +1,4 @@
-package com.zephyrsleep.tablet.utils
+package io.github.haniyehkhaksar.weatherapp.testutil
 
 import androidx.annotation.Nullable
 import androidx.test.espresso.IdlingResource

@@ -2,7 +2,7 @@ private object LibraryVersion {
     const val APP_COMPACT = "1.3.0-rc01"
     const val CONSTRAINT_LAYOUT = "2.1.0-beta01"
     const val CORE_KTX = "1.6.0-alpha02"
-    const val DAGGER = "2.35.1"
+    const val HILT = "2.37"
     const val FRAGMENT_KTX = "1.3.3"
     const val LIFECYCLE = "2.2.0"
     const val LIFECYCLE_VIEW_MODEL_KTX = "2.4.0-alpha01"
@@ -28,12 +28,8 @@ object LibraryDependency {
     const val CORE_KTX = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
 
     //Dagger
-    const val DAGGER = "com.google.dagger:dagger:${LibraryVersion.DAGGER}"
-    const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:${LibraryVersion.DAGGER}"
-    const val DAGGER_ANDROID = "com.google.dagger:dagger-android:$${LibraryVersion.DAGGER}"
-    const val DAGGER_ANDROID_X = "com.google.dagger:dagger-android-support:${LibraryVersion.DAGGER}"
-    const val DAGGER_PROCESSOR =
-        "com.google.dagger:dagger-android-processor:${LibraryVersion.DAGGER}"
+    const val HILT = "com.google.dagger:hilt-android:${LibraryVersion.HILT}"
+    const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${LibraryVersion.HILT}"
 
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
     const val LIFECYCLE_EXTENSIONS = "android.arch.lifecycle:extensions:${LibraryVersion.LIFECYCLE}"

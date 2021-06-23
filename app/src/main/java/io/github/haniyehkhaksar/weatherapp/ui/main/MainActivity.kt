@@ -4,25 +4,22 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.haniyehkhaksar.weatherapp.R
 import io.github.haniyehkhaksar.weatherapp.databinding.ActivityMainBinding
 import io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel
-import javax.inject.Inject
 
 
-class MainActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var sharedViewModel: SharedViewModel
-
-    @Inject
-    lateinit var viewModel: MainViewModel
-
-    lateinit var databinding: ActivityMainBinding
+    private val sharedViewModel: SharedViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     private val cityObserver = Observer<String> { city ->
         if (city.isNullOrEmpty() || city.isNullOrBlank()) {
@@ -34,7 +31,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        databinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val databinding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
         databinding.sharedViewModel = sharedViewModel
         databinding.viewModel = viewModel
         databinding.lifecycleOwner = this
@@ -67,7 +65,7 @@ class MainActivity : DaggerAppCompatActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
-                    if (newText.isNullOrEmpty() || newText.isNullOrBlank())
+                    if (newText.isEmpty() || newText.isBlank())
                         sharedViewModel.city.value = ""
                     return true
                 }

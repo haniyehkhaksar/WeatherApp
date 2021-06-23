@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.haniyehkhaksar.weatherapp.R
 import io.github.haniyehkhaksar.weatherapp.databinding.WeatherFragmentBinding
 import io.github.haniyehkhaksar.weatherapp.ui.SharedViewModel
-import javax.inject.Inject
 
-class WeatherFragment : DaggerFragment() {
+@AndroidEntryPoint
+class WeatherFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModel: WeatherViewModel
-
-    @Inject
-    lateinit var sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val viewModel: WeatherViewModel by viewModels()
 
     lateinit var dataBinding: WeatherFragmentBinding
 

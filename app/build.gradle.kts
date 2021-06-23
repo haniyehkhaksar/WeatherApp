@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -48,6 +49,10 @@ android {
     kotlinOptions {
         val options = this as? org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options?.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 
 }
@@ -103,12 +108,8 @@ dependencies {
     kapt(LibraryDependency.GLIDE_COMPILER)
 
     // Dagger 2
-    kapt(LibraryDependency.DAGGER_COMPILER)
-    kapt(LibraryDependency.DAGGER_PROCESSOR)
-
-    implementation(LibraryDependency.DAGGER)
-    implementation(LibraryDependency.DAGGER_ANDROID)
-    implementation(LibraryDependency.DAGGER_ANDROID_X)
+    kapt(LibraryDependency.HILT_COMPILER)
+    implementation(LibraryDependency.HILT)
 
     // Test
     testImplementation(TestLibraryDependency.MOCKK)
@@ -133,8 +134,14 @@ dependencies {
     androidTestImplementation(TestLibraryDependency.COROUTINE_TEST)
     androidTestImplementation(TestLibraryDependency.TEST_RULES)
     androidTestImplementation(TestLibraryDependency.RUNNER)
-    kaptAndroidTest(TestLibraryDependency.DAGGER_COMPILER)
-    kaptAndroidTest(TestLibraryDependency.DAGGER_PROCESSOR)
+
+    // For instrumentation tests
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.37")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.37")
+
+    // For local unit tests
+    testImplementation("com.google.dagger:hilt-android-testing:2.37")
+    kaptTest("com.google.dagger:hilt-compiler:2.37")
 
 
 }

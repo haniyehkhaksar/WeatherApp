@@ -10,12 +10,11 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import com.zephyrsleep.tablet.utils.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.R
+import io.github.haniyehkhaksar.weatherapp.testutil.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.ui.main.MainActivity
 import io.github.haniyehkhaksar.weatherapp.utils.RecyclerViewMatcher
 import io.github.haniyehkhaksar.weatherapp.utils.TestApp
-import io.github.haniyehkhaksar.weatherapp.utils.TestAppComponent
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -31,7 +30,6 @@ class MainTest {
 
     @Before
     fun beforeEach() {
-        (app.appComponent as TestAppComponent).inject(this)
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
     }
 

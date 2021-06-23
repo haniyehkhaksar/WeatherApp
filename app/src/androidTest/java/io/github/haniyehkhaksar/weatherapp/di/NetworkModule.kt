@@ -1,9 +1,9 @@
 package io.github.haniyehkhaksar.weatherapp.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.github.haniyehkhaksar.weatherapp.data.network.NewsApi
 import io.github.haniyehkhaksar.weatherapp.data.network.WeatherApi
 import io.github.haniyehkhaksar.weatherapp.interceptor.NewsInterceptor
@@ -13,13 +13,15 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
+import javax.inject.Qualifier
+import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
-class MockNetworkModule {
+class NetworkModule {
 
     @Provides
-    @Reusable
+    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
@@ -34,35 +36,41 @@ class MockNetworkModule {
             .build()
     }
 
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class WeatherRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class NewsRetrofit
+
     @Provides
-    @Reusable
-    @Named("WeatherRetrofit")
+    @Singleton
+    @WeatherRetrofit
     fun provideWeatherRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl("https://api.openweathermap.org/")
             .client(okHttpClient)
             .build()
 
     @Provides
-    @Reusable
-    @Named("NewsRetrofit")
+    @Singleton
+    @NewsRetrofit
     fun provideNewsRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .baseUrl("https://newsapi.org/")
             .client(okHttpClient)
             .build()
 
     @Provides
-    @Reusable
-    fun provideWeatherApi(@Named("WeatherRetrofit") retrofit: Retrofit): WeatherApi =
+    @Singleton
+    fun provideWeatherApi(@WeatherRetrofit retrofit: Retrofit): WeatherApi =
         retrofit.create(WeatherApi::class.java)
 
     @Provides
-    @Reusable
-    fun provideNewsApi(@Named("NewsRetrofit") retrofit: Retrofit): NewsApi =
+    @Singleton
+    fun provideNewsApi(@NewsRetrofit retrofit: Retrofit): NewsApi =
         retrofit.create(NewsApi::class.java)
 }
