@@ -2,7 +2,7 @@ package io.github.haniyehkhaksar.weatherapp.ui.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zephyrsleep.tablet.utils.EspressoIdlingResource
+import io.github.haniyehkhaksar.weatherapp.testutil.EspressoIdlingResource
 import io.github.haniyehkhaksar.weatherapp.domain.domainmodel.NewsDomainModel
 import io.github.haniyehkhaksar.weatherapp.domain.usecase.NewsUseCase
 import io.github.haniyehkhaksar.weatherapp.utils.NonNullLiveData

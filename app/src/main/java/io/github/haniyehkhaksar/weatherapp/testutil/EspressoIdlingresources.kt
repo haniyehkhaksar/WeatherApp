@@ -1,4 +1,4 @@
-package com.zephyrsleep.tablet.utils
+package io.github.haniyehkhaksar.weatherapp.testutil
 
 import androidx.test.espresso.idling.CountingIdlingResource
 
