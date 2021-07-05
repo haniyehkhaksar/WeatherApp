@@ -2,6 +2,7 @@ package io.github.haniyehkhaksar.weatherapp.di
 
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.haniyehkhaksar.weatherapp.data.network.NewsApi
@@ -20,7 +21,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     @Provides
-    @Singleton
+    @Reusable
     fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
@@ -43,7 +44,7 @@ class NetworkModule {
     annotation class NewsRetrofit
 
     @Provides
-    @Singleton
+    @Reusable
     @WeatherRetrofit
     fun provideWeatherRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
@@ -53,7 +54,7 @@ class NetworkModule {
             .build()
 
     @Provides
-    @Singleton
+    @Reusable
     @NewsRetrofit
     fun provideNewsRetrofitInterface(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
@@ -63,12 +64,12 @@ class NetworkModule {
             .build()
 
     @Provides
-    @Singleton
+    @Reusable
     fun provideWeatherApi(@WeatherRetrofit retrofit: Retrofit): WeatherApi =
         retrofit.create(WeatherApi::class.java)
 
     @Provides
-    @Singleton
+    @Reusable
     fun provideNewsApi(@NewsRetrofit retrofit: Retrofit): NewsApi =
         retrofit.create(NewsApi::class.java)
 
